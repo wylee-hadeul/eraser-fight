@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>지우개 싸움 3D</title>
+  <meta property="og:title" content="지우개 싸움 3D" />
+  <meta property="og:description" content="링크 열고 바로 1:1 지우개 싸움!" />
+  <script type="module" crossorigin src="./assets/index-CEv1vGks.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DjCpGpLQ.css">
+</head>
+<body>
+  <div id="app">
+    <div id="hud">
+      <div class="score" id="left"><i></i><span id="nameL">나</span><b id="scL">0</b></div>
+      <div id="center"><div id="turn">-</div><div id="timer"></div></div>
+      <div class="score right" id="right"><b id="scR">0</b><span id="nameR">상대</span><i></i></div>
+    </div>
+    <div id="net"></div>
+    <div id="stage"><canvas id="c"></canvas><div id="toast"></div></div>
+    <div id="spinRow">
+      <span>스핀</span>
+      <input id="spin" type="range" min="-1" max="1" step="0.1" value="0" />
+      <span id="spinVal">0</span>
+    </div>
+    <div id="pad"><div id="hint">쏠 방향 반대로 당겼다 놓기</div><div id="knob"></div></div>
+  </div>
+
+  <div id="lobby" class="overlay">
+    <h1>지우개 싸움</h1>
+    <p class="sub">책상 밖으로 떨어뜨리면 승리</p>
+    <button id="btnHost" class="big">친구와 대결 (링크 만들기)</button>
+    <button id="btnLocal">한 폰으로 둘이서</button>
+  </div>
+
+  <div id="share" class="overlay" hidden>
+    <h2>친구에게 링크를 보내세요</h2>
+    <input id="link" readonly />
+    <div class="row">
+      <button id="btnCopy">링크 복사</button>
+      <button id="btnShare">공유하기</button>
+    </div>
+    <p class="sub" id="shareStatus">친구 기다리는 중… 이 화면을 켜 두세요</p>
+  </div>
+
+  <div id="end" class="overlay" hidden>
+    <h2 id="endText"></h2>
+    <button id="btnRematch" class="big">한 판 더</button>
+  </div>
+
+  <div id="dbg"></div>
+</body>
+</html>

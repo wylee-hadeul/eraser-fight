@@ -6,15 +6,15 @@
   <title>지우개 싸움 3D</title>
   <meta property="og:title" content="지우개 싸움 3D" />
   <meta property="og:description" content="링크 열고 바로 1:1 지우개 싸움!" />
-  <script type="module" crossorigin src="./assets/index-RGpFUz54.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-Dm_Y_oF9.css">
+  <script type="module" crossorigin src="./assets/index-CNpv6xfS.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-zTjgGU5f.css">
 </head>
 <body>
   <div id="app">
     <div id="hud">
-      <div class="score" id="left"><i></i><span id="nameL">나</span><b id="scL">❤❤❤</b></div>
-      <div id="center"><div id="turn">-</div><div id="timer"></div></div>
-      <div class="score right" id="right"><b id="scR">❤❤❤</b><span id="nameR">상대</span><i></i></div>
+      <div class="score" id="left"><i></i><div><div><span id="nameL">나</span> <b id="scL">❤❤❤</b></div><div class="sub2"><span id="stkL"></span> <span id="erL"></span></div></div></div>
+      <div id="center"><div id="turn">-</div><div id="timer"></div><div id="arenaName"></div></div>
+      <div class="score right" id="right"><div><div><b id="scR">❤❤❤</b> <span id="nameR">상대</span></div><div class="sub2"><span id="erR"></span> <span id="stkR"></span></div></div><i></i></div>
     </div>
     <div id="net"></div>
     <div id="stage"><canvas id="c"></canvas><div id="toast"></div></div>
@@ -29,8 +29,59 @@
   <div id="lobby" class="overlay">
     <h1>지우개 싸움</h1>
     <p class="sub">책상 밖으로 떨어뜨리면 승리</p>
+    <div id="profile" class="card" hidden>
+      <div class="pname"><b id="pNick">-</b> <span id="pBadge"></span></div>
+      <div class="pstat" id="pStat"></div>
+      <div class="prow">
+        <button id="btnNick" class="small">닉네임 변경</button>
+        <button id="btnRank" class="small">랭킹</button>
+        <button id="btnGoogle" class="small" hidden>구글로 저장</button>
+      </div>
+    </div>
     <button id="btnHost" class="big">친구와 대결 (링크 만들기)</button>
     <button id="btnLocal">한 폰으로 둘이서</button>
+    <p class="sub" id="lobbyMsg"></p>
+  </div>
+
+  <div id="nickBox" class="overlay" hidden>
+    <h2>닉네임</h2>
+    <input id="nickInput" maxlength="12" placeholder="1~12자" />
+    <div class="row"><button id="nickCancel">취소</button><button id="nickSave" class="big">저장</button></div>
+    <p class="sub" id="nickMsg"></p>
+  </div>
+
+  <div id="pickBox" class="overlay" hidden>
+    <h2 id="pickTitle">지우개 선택</h2>
+    <p class="sub" id="pickInfo"></p>
+    <div id="pickCards"></div>
+    <button id="pickReady" class="big" hidden>준비됐어요</button>
+    <p class="sub" id="pickStatus"></p>
+  </div>
+
+  <div id="pairBox" class="overlay" hidden>
+    <h2>구글 계정 연결</h2>
+    <p class="sub">카톡 안에서는 구글 로그인이 막혀 있어요.<br />외부 브라우저에서 구글 로그인 후 아래 번호를 입력하세요.</p>
+    <div id="pairCode" class="code">----</div>
+    <button id="pairOpen" class="big">외부 브라우저 열기</button>
+    <p class="sub">안 열리면 카톡 우측 상단 ⋮ → "다른 브라우저로 열기" 후<br />아래 주소로 이동하세요</p>
+    <input id="pairUrl" readonly />
+    <p class="sub" id="pairMsg">연결 기다리는 중…</p>
+    <button id="pairCancel">닫기</button>
+  </div>
+
+  <div id="approveBox" class="overlay" hidden>
+    <h2>기기 연결</h2>
+    <p class="sub" id="approveInfo">카톡 화면에 표시된 4자리 번호를 입력하세요.<br /><b>다른 사람이 알려준 번호라면 입력하지 마세요.</b></p>
+    <button id="approveLogin" class="big" hidden>구글로 로그인</button>
+    <input id="approveCode" inputmode="numeric" maxlength="4" placeholder="0000" />
+    <div class="row"><button id="approveCancel">취소</button><button id="approveOk" class="big">연결</button></div>
+    <p class="sub" id="approveMsg"></p>
+  </div>
+
+  <div id="rankBox" class="overlay" hidden>
+    <h2>랭킹</h2>
+    <ol id="rankList"></ol>
+    <button id="rankClose">닫기</button>
   </div>
 
   <div id="share" class="overlay" hidden>
@@ -45,6 +96,7 @@
 
   <div id="end" class="overlay" hidden>
     <h2 id="endText"></h2>
+    <p class="sub" id="endRating"></p>
     <button id="btnRematch" class="big">한 판 더</button>
   </div>
 
